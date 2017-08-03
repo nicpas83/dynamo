@@ -113,8 +113,12 @@ class ContenidosController extends AppController {
 
     public function activar($id = null) {
         $this->autoRender = false;
-        $this->Contenido->activar_registro($id);
-        return $this->redirect(array('action' => 'index'));
+        if($this->Contenido->activar_registro($id)){
+            $this->Flash->success(__('El registro fue activado.'));
+            return $this->redirect(array('action' => 'index'));
+        }
+            
+        
     }
 
     public function combo_seccion($name) {

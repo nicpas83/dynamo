@@ -45,7 +45,7 @@
                             if (isset($var['accion']['eliminar'])) {
                                 echo $this->Form->postLink('', array('action' => 'eliminar', $land['Contenido']['id']), array('confirm' => 'Estás seguro?', 'title' => 'Eliminar', 'class' => $var['accion']['eliminar']));
                             }
-                            echo $this->Html->link('', array('action' => 'edit', $land['Contenido']['id']), array('title' => 'Editar', 'class' => $var['accion']['editar']));
+                            echo $this->Html->link('', array('action' => 'editar', $land['Contenido']['id']), array('title' => 'Editar', 'class' => $var['accion']['editar']));
                             ?> 
                         </td>
                     </tr>
