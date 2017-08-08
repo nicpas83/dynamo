@@ -12,21 +12,16 @@ class Contenido extends AppModel {
         )
     );
 
-    public function afterFind($results, $primary = false) {
+    public $virtualFields = array(
+        'str_estado' => 'IF(estado = 1, "Activo", "Inactivo")'
+    );
 
-        if (isset($results[0]['Contenido']['estado'])) {
-
-            foreach ($results as $key => $val) {
-                if ($val['Contenido']['estado'] == '1') {
-                    $results[$key]['Contenido']['estado'] = 'Activo';
-                } else {
-                    $results[$key]['Contenido']['estado'] = 'Inactivo';
-                }
-            }
-        }
-        return $results;
+    public function landing_page(){
+        
+        return $this->Find('all', ['fields'=>['contenido'],'order'=>'orden ASC', 'conditions'=>['estado'=>1]]);
+        
     }
-
+    
     public function combo_seccion() {
 
         return $this->find('list', [
@@ -54,22 +49,22 @@ class Contenido extends AppModel {
         ));
     }
 
-    public function activar_registro($activarId) {
-
-        //desactivo el contenido actual.
-        $nro_orden = $this->findById($activarId);
-        $nro_orden = $nro_orden['Contenido']['orden'];
-        
-        $desactivar = $this->find('first', array(
-            'conditions' => ['orden' => $nro_orden, 'estado' => 1]
-        ));
-        $this->id = intval($desactivar['Contenido']['id']);
-        $this->saveField('estado', 0);
-        
-        //activo el nuevo contenido
-        $this->id = $activarId;
+    public function activar_registro($id) {
+        $this->id = $id;
         $this->saveField('estado', 1);
-        
+        return true;
+    }
+
+    public function desactivar_registro($id) {
+        $res = $this->findById($id);
+        $nro_orden = $res['Contenido']['orden'];
+
+        $desactivar = $this->find('first', array(
+            'conditions' => array('orden' => $nro_orden, 'estado' => 1)
+        ));
+        $this->id = $desactivar['Contenido']['id'];
+        $this->saveField('estado', 0);
+        return true;
     }
 
 }

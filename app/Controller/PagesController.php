@@ -11,7 +11,7 @@ class PagesController extends AppController {
  *
  * @var array
  */
-	public $uses = array();
+	public $uses = array('Contenido');
 
 /**
  * Displays a view
@@ -52,5 +52,10 @@ class PagesController extends AppController {
 			}
 			throw new NotFoundException();
 		}
+                
+                //PASO EL CONTENIDO DINAMICO 
+                $landing = $this->Contenido->landing_page();
+                $this->set('landing',$landing);
+                
 	}
 }

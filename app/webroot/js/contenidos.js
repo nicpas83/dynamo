@@ -1,5 +1,9 @@
 $(function () {
 
+    setTimeout(function () {
+        $('#flashMsg').fadeOut('slow');
+    }, 2000); // <-- time in milliseconds
+
     $("#contenidos").DataTable({
         'responsive': true,
         'ordering': false,
@@ -11,7 +15,7 @@ $(function () {
     }).change();
 
     $("#ContenidoDescripcion").change(function () {
-        
+
         var seccion = $("#ContenidoSeccion").find("option:selected").text();
         var descripcion = $("#ContenidoDescripcion").find("option:selected").text();
         obtenerContenido(seccion, descripcion, 'ContenidoValorActual');
@@ -30,7 +34,7 @@ function actualizarComboAnidado(actualizarCombo, relacionadoA) {
         $.each(jdata, function (key, value) {
             $('#ContenidoDescripcion').append($("<option/>").text(value));
         });
-        
+
         var seccion = $("#ContenidoSeccion").find("option:selected").text();
         var descripcion = $("#ContenidoDescripcion").find("option:selected").text();
         obtenerContenido(seccion, descripcion, 'ContenidoValorActual');
@@ -43,7 +47,7 @@ function obtenerContenido(seccion, descripcion, divId) {
     $.post(baseUrl + 'contenidos/obtenerContenido/', postData, function (data) {
         var jdata = $.parseJSON(data);
         //console.log(jdata);
-        $('#'+ divId +'').val(jdata.contenido);
+        $('#' + divId + '').val(jdata.contenido);
         $('#ContenidoOrden').val(jdata.orden);
         $('#ContenidoTmpId').val(jdata.id);
     });

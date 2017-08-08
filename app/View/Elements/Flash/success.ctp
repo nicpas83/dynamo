@@ -1,3 +1,3 @@
-<div class="alert alert-success" onclick="this.classList.add('hidden')">
+<div id="flashMsg" class="alert alert-success">
   <strong> <?= h($message) ?> </strong>
 </div>

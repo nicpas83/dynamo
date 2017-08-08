@@ -8,7 +8,7 @@
             <div class="intro">
                 <img src="img/logo-blanco.png" alt="logo" style="margin-bottom: 25px;" />
 
-                <h1 style="font-weight: bold;">muebles a tu medida</h1>
+                <h1 style="font-weight: bold;"><?php debug($landing); die;//echo $landing[0]['Contenido']['contenido']; ?></h1>
                 <p>asesoramiento, diseño y fabricación</p>
                 <a href="#nosotros" class="btn btn-default-o onPageNav">Conocenos!</a>
             </div><!-- /.intro -->
