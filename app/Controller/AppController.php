@@ -32,4 +32,24 @@ class AppController extends Controller {
         $this->set('cancelar', $cancelar);
     }
 
+    public $components = array(
+        'Session',
+        'Auth' => array(
+            'loginRedirect' => array(
+                'controller' => 'posts',
+                'action' => 'index'
+            ),
+            'logoutRedirect' => array(
+                'controller' => 'pages',
+                'action' => 'display',
+                'home'
+            ),
+            'authenticate' => array(
+                'Form' => array(
+                    'passwordHasher' => 'Blowfish'
+                )
+            )
+        )
+    );
+
 }

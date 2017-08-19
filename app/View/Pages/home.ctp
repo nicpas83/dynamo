@@ -8,8 +8,8 @@
             <div class="intro">
                 <img src="img/logo-blanco.png" alt="logo" style="margin-bottom: 25px;" />
 
-                <h1 style="font-weight: bold;"><?php debug($landing); die;//echo $landing[0]['Contenido']['contenido']; ?></h1>
-                <p>asesoramiento, diseño y fabricación</p>
+                <h1 style="font-weight: bold;"><?php echo $landing[0]['Contenido']['contenido']; ?></h1>
+                <p><?php echo $landing[1]['Contenido']['contenido']; ?></p>
                 <a href="#nosotros" class="btn btn-default-o onPageNav">Conocenos!</a>
             </div><!-- /.intro -->
 
@@ -30,17 +30,17 @@
 
         <!---->
         <header class="section-heading">
-            <h2>¿Cómo trabajamos?</h2>
+            <h2><?php echo $landing[2]['Contenido']['contenido']; ?></h2>
             <br />
-            <span>Te escuchamos, tomamos las medidas y hacemos realidad el mueble que soñas!</span>
+            <span><?php echo $landing[3]['Contenido']['contenido']; ?></span>
         </header><!-- section-heading -->
         <!---->
         <div class="row">
             <div class="col-sm-12">
                 <!-- about-left -->
                 <div class="about-content" style="text-align: center;">
-                    <p>Hacemos de tu hogar, un lugar al que siempre quieras volver...</p>
-                    <p>Si necesitas asesoramiento no dudes en consultar, tu pregunta no molesta, nos encanta! </p>
+                    <p><?php echo $landing[4]['Contenido']['contenido']; ?></p>
+                    <p><?php echo $landing[5]['Contenido']['contenido']; ?></p>
                 </div>
             </div><!-- col-sm-4 -->
         </div><!-- row -->
@@ -66,8 +66,8 @@
 
         <!---->
         <header class="section-heading">
-            <h2>Ultimos Proyectos</h2>
-            <span>¡clientes felices!</span>
+            <h2><?php echo $landing[6]['Contenido']['contenido']; ?></h2>
+            <span><?php echo $landing[7]['Contenido']['contenido']; ?></span>
         </header>
         <!---->
 
@@ -170,7 +170,7 @@
 <section id="comprar" class="section our-process">
     <div class="container">
         <header class="section-heading">
-            <h2>¿Cómo comprar en Dynamo?</h2>
+            <h2><?php echo $landing[8]['Contenido']['contenido']; ?></h2>
             <!-- <span></span>  -->
         </header>
         <div class="section-content">
@@ -181,9 +181,8 @@
                 </div>
                 <div class="our-process-text">
                     <!-- our-process-text -->
-                    <h4>Contanos tu idea</h4>
-                    <p>Contamos con un equipo de diseñadores especializados para entender tu necesidad
-                        y crear el mueble ideal para ese espacio que tanto te cuesta resolver.</p>
+                    <h4><?php echo $landing[9]['Contenido']['contenido']; ?></h4>
+                    <p><?php echo $landing[10]['Contenido']['contenido']; ?></p>
                 </div>
 
             </div><!-- process -->
@@ -202,9 +201,8 @@
                 <div class="our-process-text right">
 
                     <!-- our-process-text -->
-                    <h4>Diseño &amp; Desarrollo</h4>
-                    <p>Vamos personalmente a tomar las medidas de tu espacio y te asesoramos para que 
-                        el mueble sea funcional y se adapte perfecto al ambiente.</p>
+                    <h4><?php echo $landing[11]['Contenido']['contenido']; ?></h4>
+                    <p><?php echo $landing[12]['Contenido']['contenido']; ?></p>
 
                 </div>
             </div><!-- process -->
@@ -223,10 +221,8 @@
                 <div class="our-process-text">
 
                     <!-- our-process-text -->
-                    <h4>Producción &amp; Entrega</h4>
-                    <p>Una vez acordado el diseño mediante planos y croquis te enviamos el presupuesto. Y con una seña 
-                        del 50% avanzamos a la etapa de producción. La entrega será en un plazo de 30 a 40 días, y la 
-                        misma es realizada por personal de nuestra confianza para garantizar el cuidado especial de tu mueble.</p>
+                    <h4><?php echo $landing[13]['Contenido']['contenido']; ?></h4>
+                    <p><?php echo $landing[14]['Contenido']['contenido']; ?></p>
 
                 </div>
             </div><!-- process -->
@@ -243,15 +239,15 @@
     <div class="container">
         <!---->
         <header class="section-heading">
-            <h2> Esperamos tu contacto</h2>
-            <span>¡Muchas Gracias!</span>
+            <h2> <?php echo $landing[15]['Contenido']['contenido']; ?></h2>
+            <span><?php echo $landing[16]['Contenido']['contenido']; ?></span>
         </header>
         <!---->
 
         <div class="section-content">
             <div class="row col-md-12">
                 <div >
-                    <h5 style="text-align: center;">Respondemos a la brevedad!</h5>
+                    <h5 style="text-align: center;"><?php echo $landing[17]['Contenido']['contenido']; ?></h5>
                     <form action="assets/contact-form.php" class="contact-form" id="contactForm" method="post" name="contactform" role="form">
 
                         <div class="form-group">
