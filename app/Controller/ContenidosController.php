@@ -2,7 +2,7 @@
 
 App::uses('AppController', 'Controller');
 
-// pasar variables a la vista:   $this->set('posts', $this->Post->find('all'));
+// Ejemplo para pasar variables a la vista:   $this->set('posts', $this->Post->find('all'));
 
 class ContenidosController extends AppController {
 
@@ -12,8 +12,6 @@ class ContenidosController extends AppController {
     }
 
     public function index($estado = null) {
-        
-//        debug($estado); die;
 
         if ($estado == '0') {
             $configView = array(
@@ -28,7 +26,6 @@ class ContenidosController extends AppController {
             );
         } else {
             $estado = 1;
-
             $configView = array(
                 'titulo' => 'Contenidos Activos',
                 'linkBtn' => 'Ver Inactivos',
@@ -42,50 +39,30 @@ class ContenidosController extends AppController {
 
         //paso variables a la vista.
         $this->set('configView', $configView);
-        $this->set('landing', $this->Contenido->find('all', [
+        $this->set('contenidos', $this->Contenido->find('all', [
                     'order' => ['orden ASC'],
                     'conditions' => ['estado' => $estado]
                         ]
         ));
     }
 
-    public function historial($orden) {
-        if (!empty($orden)) {
-            $configView = array(
-                'titulo' => 'Historial',
-                'linkBtn' => 'Volver',
-                'accion' => array(
-                    'editar' => 'btn btn-primary btn-xs fa fa-edit pull-right',
-                    'eliminar' => 'btn btn-primary btn-xs fa fa-trash-o pull-right',
-                    'activar' => 'btn btn-primary btn-xs fa fa-check-square-o pull-right'
-                )
-            );
-        }
-        //paso variables a la vista.
-        $this->set('configView', $configView);
-        $this->set('landing', $this->Contenido->find('all', [
-                    'order' => ['estado DESC'],
-                    'conditions' => ['orden' => $orden]
-                        ]
-        ));
-    }
-
     public function nuevo() {
+
+        $this->set('combo_seccion', $this->Contenido->combo_seccion());
+        $this->set('combo_descripcion', $this->Contenido->crear_combo('descripcion', 'Home'));
+
         if ($this->request->is('post')) {
+            $this->Contenido->desactivar($this->request->data['Contenido']['tmp_id']);
+            $this->request->data['Contenido']['user_id'] = $this->Auth->user('id');
+
             $this->Contenido->create();
             if ($this->Contenido->save($this->request->data)) {
-//actualiza estado del anterior contenido. 
-                $this->Contenido->id = intval($this->request->data['Contenido']['tmp_id']);
-                $this->Contenido->saveField('estado', 0);
-                $this->Flash->success(__('El registro fue guardado.'));
-//return $this->redirect(array('action' => 'index'));
+                $this->Flash->success('El registro fue guardado.');
+                return $this->redirect(array('action' => 'index'));
             } else {
                 $this->Flash->error(__('Error al guardar el registro.'));
             }
         }
-
-        $this->set('combo_seccion', $this->Contenido->combo_seccion());
-        $this->set('combo_descripcion', $this->Contenido->crear_combo('descripcion', 'Home'));
     }
 
     public function editar($id = null) {
@@ -95,21 +72,19 @@ class ContenidosController extends AppController {
         $result = $this->Contenido->findById($id);
         if (!$result) {
             throw new NotFoundException(__('Registro inválido'));
-        } else {
-            if (!$this->request->data) {
-                $this->request->data = $result;
-            }
         }
-
         if ($this->request->is(array('post', 'put'))) {
             $estado = $this->request->data['Contenido']['estado'];
             $this->Contenido->id = $id;
-
             if ($this->Contenido->save($this->request->data)) {
                 $this->Flash->success(__('El registro fue actualizado.'));
-                return $this->redirect(array('action' => 'index', $estado));
+                return $this->redirect(array('action' => 'index', 1));
             }
             $this->Flash->error(__('Error al actualizar el registro.'));
+        }
+
+        if (!$this->request->data) {
+            $this->request->data = $result;
         }
     }
 
@@ -127,15 +102,36 @@ class ContenidosController extends AppController {
     }
 
     public function activar($id = null) {
-        $this->autoRender = false;
+        $this->autoRender = false;  // no tiene vista asociada. 
 
-        $this->Contenido->desactivar_registro($id);
-        $this->Contenido->activar_registro($id);
-
-        if ($this->Contenido->activar_registro($id)) {
-            $this->Flash->success(__('El registro fue activado.'));
-            return $this->redirect(array('action' => 'index', 1));
+        if ($id) {
+            $this->Contenido->desactivar($id);
+            if ($this->Contenido->activar($id)) {
+                $this->Flash->success(__('El registro fue activado.'));
+                return $this->redirect(array('action' => 'index', 1));
+            }
         }
+    }
+
+    public function historial($orden) {
+        if (!empty($orden)) {
+            $configView = array(
+                'titulo' => 'Historial',
+                'linkBtn' => 'Volver',
+                'accion' => array(
+                    'editar' => 'btn btn-primary btn-xs fa fa-edit pull-right',
+                    'eliminar' => 'btn btn-primary btn-xs fa fa-trash-o pull-right',
+                    'activar' => 'btn btn-primary btn-xs fa fa-check-square-o pull-right'
+                )
+            );
+        }
+        //paso variables a la vista.
+        $this->set('configView', $configView);
+        $this->set('contenidos', $this->Contenido->find('all', [
+                    'order' => ['estado DESC'],
+                    'conditions' => ['orden' => $orden]
+                        ]
+        ));
     }
 
     public function combo_seccion($name) {

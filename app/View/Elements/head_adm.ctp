@@ -7,7 +7,7 @@
 <!--favicon-->
 <?php echo $this->Html->meta('favicon.ico','/favicon.ico',array('type' => 'icon')); ?>
 
-<title>SB Admin 2 - Bootstrap Admin Theme</title>
+<title>Admin Page - Dynamo Muebles</title>
 
 
 <!-- css -->

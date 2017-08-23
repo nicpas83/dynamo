@@ -13,7 +13,11 @@
                 <!-- /input-group -->
             </li>
 
-            <?php echo $this->element('menu_adm'); ?>
+            <?php
+            if ($this->Session->check('Auth.User')) {
+                echo $this->element('menu_adm');
+            }
+            ?>
 
         </ul>
     </div>

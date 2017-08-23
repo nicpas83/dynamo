@@ -8,8 +8,8 @@
             <div class="intro">
                 <img src="img/logo-blanco.png" alt="logo" style="margin-bottom: 25px;" />
 
-                <h1 style="font-weight: bold;"><?php echo $landing[0]['Contenido']['contenido']; ?></h1>
-                <p><?php echo $landing[1]['Contenido']['contenido']; ?></p>
+                <h1 style="font-weight: bold;"><?php echo $contenidos[0]['Contenido']['contenido']; ?></h1>
+                <p><?php echo $contenidos[1]['Contenido']['contenido']; ?></p>
                 <a href="#nosotros" class="btn btn-default-o onPageNav">Conocenos!</a>
             </div><!-- /.intro -->
 
@@ -30,17 +30,17 @@
 
         <!---->
         <header class="section-heading">
-            <h2><?php echo $landing[2]['Contenido']['contenido']; ?></h2>
+            <h2><?php echo $contenidos[2]['Contenido']['contenido']; ?></h2>
             <br />
-            <span><?php echo $landing[3]['Contenido']['contenido']; ?></span>
+            <span><?php echo $contenidos[3]['Contenido']['contenido']; ?></span>
         </header><!-- section-heading -->
         <!---->
         <div class="row">
             <div class="col-sm-12">
                 <!-- about-left -->
                 <div class="about-content" style="text-align: center;">
-                    <p><?php echo $landing[4]['Contenido']['contenido']; ?></p>
-                    <p><?php echo $landing[5]['Contenido']['contenido']; ?></p>
+                    <p><?php echo $contenidos[4]['Contenido']['contenido']; ?></p>
+                    <p><?php echo $contenidos[5]['Contenido']['contenido']; ?></p>
                 </div>
             </div><!-- col-sm-4 -->
         </div><!-- row -->
@@ -66,8 +66,8 @@
 
         <!---->
         <header class="section-heading">
-            <h2><?php echo $landing[6]['Contenido']['contenido']; ?></h2>
-            <span><?php echo $landing[7]['Contenido']['contenido']; ?></span>
+            <h2><?php echo $contenidos[6]['Contenido']['contenido']; ?></h2>
+            <span><?php echo $contenidos[7]['Contenido']['contenido']; ?></span>
         </header>
         <!---->
 
@@ -170,7 +170,7 @@
 <section id="comprar" class="section our-process">
     <div class="container">
         <header class="section-heading">
-            <h2><?php echo $landing[8]['Contenido']['contenido']; ?></h2>
+            <h2><?php echo $contenidos[8]['Contenido']['contenido']; ?></h2>
             <!-- <span></span>  -->
         </header>
         <div class="section-content">
@@ -181,8 +181,8 @@
                 </div>
                 <div class="our-process-text">
                     <!-- our-process-text -->
-                    <h4><?php echo $landing[9]['Contenido']['contenido']; ?></h4>
-                    <p><?php echo $landing[10]['Contenido']['contenido']; ?></p>
+                    <h4><?php echo $contenidos[9]['Contenido']['contenido']; ?></h4>
+                    <p><?php echo $contenidos[10]['Contenido']['contenido']; ?></p>
                 </div>
 
             </div><!-- process -->
@@ -201,8 +201,8 @@
                 <div class="our-process-text right">
 
                     <!-- our-process-text -->
-                    <h4><?php echo $landing[11]['Contenido']['contenido']; ?></h4>
-                    <p><?php echo $landing[12]['Contenido']['contenido']; ?></p>
+                    <h4><?php echo $contenidos[11]['Contenido']['contenido']; ?></h4>
+                    <p><?php echo $contenidos[12]['Contenido']['contenido']; ?></p>
 
                 </div>
             </div><!-- process -->
@@ -221,8 +221,8 @@
                 <div class="our-process-text">
 
                     <!-- our-process-text -->
-                    <h4><?php echo $landing[13]['Contenido']['contenido']; ?></h4>
-                    <p><?php echo $landing[14]['Contenido']['contenido']; ?></p>
+                    <h4><?php echo $contenidos[13]['Contenido']['contenido']; ?></h4>
+                    <p><?php echo $contenidos[14]['Contenido']['contenido']; ?></p>
 
                 </div>
             </div><!-- process -->
@@ -239,15 +239,15 @@
     <div class="container">
         <!---->
         <header class="section-heading">
-            <h2> <?php echo $landing[15]['Contenido']['contenido']; ?></h2>
-            <span><?php echo $landing[16]['Contenido']['contenido']; ?></span>
+            <h2> <?php echo $contenidos[15]['Contenido']['contenido']; ?></h2>
+            <span><?php echo $contenidos[16]['Contenido']['contenido']; ?></span>
         </header>
         <!---->
 
         <div class="section-content">
             <div class="row col-md-12">
                 <div >
-                    <h5 style="text-align: center;"><?php echo $landing[17]['Contenido']['contenido']; ?></h5>
+                    <h5 style="text-align: center;"><?php echo $contenidos[17]['Contenido']['contenido']; ?></h5>
                     <form action="assets/contact-form.php" class="contact-form" id="contactForm" method="post" name="contactform" role="form">
 
                         <div class="form-group">

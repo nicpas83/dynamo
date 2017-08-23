@@ -25,10 +25,9 @@ class PagesController extends AppController {
     public function display() {
         $path = func_get_args();
         
-        
         //PASO EL CONTENIDO DINAMICO 
         $landing = $this->Contenido->landing_page();
-        $this->set('landing', $landing);
+        $this->set('contenidos', $landing);
         
 
         $count = count($path);

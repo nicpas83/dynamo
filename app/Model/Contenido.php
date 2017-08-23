@@ -42,23 +42,23 @@ class Contenido extends AppModel {
         return json_encode($data);
     }
 
+    
+    
     public function buscar_registro($seccion, $descripcion) {
-
         return $this->find('all', array(
                     'conditions' => array(['seccion' => $seccion], ['descripcion' => $descripcion], ['estado' => 1])
         ));
     }
 
-    public function activar_registro($id) {
+    public function activar($id) {
         $this->id = $id;
         $this->saveField('estado', 1);
         return true;
     }
 
-    public function desactivar_registro($id) {
+    public function desactivar($id) {
         $res = $this->findById($id);
         $nro_orden = $res['Contenido']['orden'];
-
         $desactivar = $this->find('first', array(
             'conditions' => array('orden' => $nro_orden, 'estado' => 1)
         ));
@@ -66,5 +66,7 @@ class Contenido extends AppModel {
         $this->saveField('estado', 0);
         return true;
     }
+    
+     
 
 }
