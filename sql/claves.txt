@@ -1,3 +1,9 @@
 ftp
 info@dynamomuebles.com.ar
 ftpdynamo123
+
+
+database:
+
+user: latencia_nicpas
+pass: dynamo16947
