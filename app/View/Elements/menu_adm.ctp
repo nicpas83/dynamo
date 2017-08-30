@@ -1,11 +1,14 @@
 <li>
+    <a href="<?php echo $this->Html->url(['controller'=>'categorias', 'action'=>'index']) ?>"><i class="fa fa-tags"></i> Categorias</a>
+</li>
+<li>
     <a href=""><i class="fa fa-files-o fa-fw"></i> Landing Page<span class="fa arrow"></span></a>
     <ul class="nav nav-second-level">
         <li>
-            <a href="<?php echo $this->Html->url(['controller'=>'contenidos', 'action'=>'index']) ?>">Ver Contenidos</a>
+            <a href="<?php echo $this->Html->url(['controller'=>'contenidos', 'action'=>'index']) ?>">Contenidos</a>
         </li>
         <li>
-            <a href="<?php echo $this->Html->url(['controller'=>'contenidos','action'=>'nuevo']) ?>">Nuevo Contenido</a>
+            <a href="<?php echo $this->Html->url(['controller'=>'imagenes']) ?>">Galería</a>
         </li>
         
     </ul>

@@ -4,6 +4,7 @@ App::uses('Controller', 'Controller');
 
 class AppController extends Controller {
     
+    var $uses = array('Categoria');
     
     public $components = array(
         'Flash',

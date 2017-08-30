@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 
 // Ejemplo para pasar variables a la vista:   $this->set('posts', $this->Post->find('all'));
 
-class ContenidosController extends AppController {
+class CategoriasController extends AppController {
 
     function beforeFilter() {
         parent::beforeFilter();
@@ -15,7 +15,7 @@ class ContenidosController extends AppController {
 
         if ($estado == '0') {
             $configView = array(
-                'titulo' => 'Contenidos Inactivos',
+                'titulo' => 'Categorias Inactivas',
                 'estado' => 1,
                 'accion' => array(
                     'editar' => 'btn btn-primary btn-xs fa fa-edit pull-right',
@@ -26,18 +26,18 @@ class ContenidosController extends AppController {
         } else {
             $estado = 1;
             $configView = array(
-                'titulo' => 'Contenidos Activos',
+                'titulo' => 'Categorias Activas',
                 'estado' => 0,
                 'accion' => array(
                     'editar' => 'btn btn-primary btn-xs fa fa-edit pull-right',
-                    'historial' => 'btn btn-primary btn-xs fa fa-history pull-right'
+                    'desactivar' => 'btn btn-primary btn-xs fa fa-ban pull-right'
                 )
             );
         }
 
         //paso variables a la vista.
         $this->set('configView', $configView);
-        $this->set('contenidos', $this->Contenido->find('all', [
+        $this->set('categorias', $this->Categoria->find('all', [
                     'order' => ['orden ASC'],
                     'conditions' => ['estado' => $estado]
                         ]
@@ -46,15 +46,10 @@ class ContenidosController extends AppController {
 
     public function nuevo() {
 
-        $this->set('combo_seccion', $this->Contenido->combo_seccion());
-        $this->set('combo_descripcion', $this->Contenido->crear_combo('descripcion', 'Home'));
-
         if ($this->request->is('post')) {
-            $this->Contenido->desactivar($this->request->data['Contenido']['tmp_id']);
-            $this->request->data['Contenido']['user_id'] = $this->Auth->user('id');
-
-            $this->Contenido->create();
-            if ($this->Contenido->save($this->request->data)) {
+            $this->request->data['Categoria']['user_id'] = $this->Auth->user('id');
+            $this->Categoria->create();
+            if ($this->Categoria->save($this->request->data)) {
                 $this->Flash->success('El registro fue guardado.');
                 return $this->redirect(array('action' => 'index'));
             } else {
@@ -67,14 +62,14 @@ class ContenidosController extends AppController {
         if (!$id) {
             throw new NotFoundException(__('Registro inválido'));
         }
-        $result = $this->Contenido->findById($id);
+        $result = $this->Categoria->findById($id);
         if (!$result) {
             throw new NotFoundException(__('Registro inválido'));
         }
         if ($this->request->is(array('post', 'put'))) {
-            $estado = $this->request->data['Contenido']['estado'];
-            $this->Contenido->id = $id;
-            if ($this->Contenido->save($this->request->data)) {
+            $estado = $this->request->data['Categoria']['estado'];
+            $this->Categoria->id = $id;
+            if ($this->Categoria->save($this->request->data)) {
                 $this->Flash->success(__('El registro fue actualizado.'));
                 return $this->redirect(array('action' => 'index', 1));
             }
@@ -91,7 +86,7 @@ class ContenidosController extends AppController {
             throw new MethodNotAllowedException();
         }
 
-        if ($this->Contenido->delete($id)) {
+        if ($this->Categoria->delete($id)) {
             $this->Flash->success(__('El registro fue eliminado.'));
         } else {
             $this->Flash->error(__('Error al eliminar el registro.'));
@@ -103,8 +98,8 @@ class ContenidosController extends AppController {
         $this->autoRender = false;  // no tiene vista asociada. 
 
         if ($id) {
-            $this->Contenido->desactivar($id);
-            if ($this->Contenido->activar($id)) {
+            $this->Categoria->desactivar($id);
+            if ($this->Categoria->activar($id)) {
                 $this->Flash->success(__('El registro fue activado.'));
                 return $this->redirect(array('action' => 'index', 1));
             }
@@ -125,7 +120,7 @@ class ContenidosController extends AppController {
         }
         //paso variables a la vista.
         $this->set('configView', $configView);
-        $this->set('contenidos', $this->Contenido->find('all', [
+        $this->set('contenidos', $this->Categoria->find('all', [
                     'order' => ['estado DESC'],
                     'conditions' => ['orden' => $orden]
                         ]
@@ -134,20 +129,20 @@ class ContenidosController extends AppController {
 
     public function combo_seccion($name) {
         $this->autoRender = false;
-        return $this->Contenido->crear_combo($name);
+        return $this->Categoria->crear_combo($name);
     }
 
     public function actualizarComboAnidado($nuevoCombo, $relacionadoA) {
         $this->autoRender = false;
-        return $this->Contenido->crear_combo($nuevoCombo, $relacionadoA);
+        return $this->Categoria->crear_combo($nuevoCombo, $relacionadoA);
     }
 
-    public function obtenerContenido() {
+    public function obtenerCategoria() {
         $this->autoRender = false;
         if (isset($_POST) && !empty($_POST['seccion']) && !empty($_POST['descripcion'])) {
-            $data = $this->Contenido->buscar_registro($_POST['seccion'], $_POST['descripcion']);
+            $data = $this->Categoria->buscar_registro($_POST['seccion'], $_POST['descripcion']);
         }
-        return json_encode($data[0]['Contenido']);
+        return json_encode($data[0]['Categoria']);
     }
 
 }

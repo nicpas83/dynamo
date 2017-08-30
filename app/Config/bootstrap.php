@@ -48,6 +48,8 @@ Inflector::rules('singular', array(
     'rules' => array(),
     'irregular' => array(
         'contenidos' => 'Contenido',
+        'imagenes' => 'Imagen',
+        'categorias' => 'Categoria',
     ),
     'uninflected' => array()
     )
@@ -57,6 +59,8 @@ Inflector::rules('plural', array(
     'rules' => array(),
     'irregular' => array(
         'contenido' => 'Contenidos',
+        'imagen' => 'Imagenes',
+        'categoria' => 'Categorias',
     ),
     'uninflected' => array()
     )

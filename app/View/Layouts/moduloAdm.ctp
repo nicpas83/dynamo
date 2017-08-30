@@ -23,8 +23,10 @@
         <?php echo $this->element('footer_adm') ?>
 
         <?php
-//            debug($this->params['controller']); die;
-
+        //debug($this->params['controller']); die;
+        
+        echo $this->Html->script('funciones');
+        
         if (is_file(WWW_ROOT . 'js' . DS . $this->params['controller'] . '.js')) {
             echo $this->Html->script($this->params['controller']);
         }

@@ -19,6 +19,8 @@ echo $this->Html->css('/assets_adm/css/plugins/timeline');
 echo $this->Html->css('/assets_adm/css/sb-admin-2');
 
 echo $this->Html->css('/assets_adm/DataTables/media/css/dataTables.bootstrap.min');
+echo $this->Html->css('/assets_adm/Bootstrap-Fileinput/css/fileinput.min');
+echo $this->Html->css('/assets_adm/FancyBox/jquery.fancybox.min');
 echo $this->Html->css('/assets_adm/font-awesome/css/font-awesome.min');
 
 ?>

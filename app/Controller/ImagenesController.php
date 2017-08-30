@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 
 // Ejemplo para pasar variables a la vista:   $this->set('posts', $this->Post->find('all'));
 
-class ContenidosController extends AppController {
+class ImagenesController extends AppController {
 
     function beforeFilter() {
         parent::beforeFilter();
@@ -26,7 +26,7 @@ class ContenidosController extends AppController {
         } else {
             $estado = 1;
             $configView = array(
-                'titulo' => 'Contenidos Activos',
+                'titulo' => 'Administrador de Imágenes',
                 'estado' => 0,
                 'accion' => array(
                     'editar' => 'btn btn-primary btn-xs fa fa-edit pull-right',
@@ -34,10 +34,11 @@ class ContenidosController extends AppController {
                 )
             );
         }
+        
 
         //paso variables a la vista.
         $this->set('configView', $configView);
-        $this->set('contenidos', $this->Contenido->find('all', [
+        $this->set('imagenes', $this->Imagen->find('all', [
                     'order' => ['orden ASC'],
                     'conditions' => ['estado' => $estado]
                         ]
@@ -46,8 +47,7 @@ class ContenidosController extends AppController {
 
     public function nuevo() {
 
-        $this->set('combo_seccion', $this->Contenido->combo_seccion());
-        $this->set('combo_descripcion', $this->Contenido->crear_combo('descripcion', 'Home'));
+        $this->set('combo_categorias', $this->Categoria->combo_categorias());
 
         if ($this->request->is('post')) {
             $this->Contenido->desactivar($this->request->data['Contenido']['tmp_id']);

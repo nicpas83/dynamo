@@ -6,12 +6,9 @@
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
-    <div class="actionBtn">
-        <?php
-        echo $this->Html->link('Nuevo', array('action' => 'nuevo'), array('class' => 'btn btn-primary btn-sm'));
-        echo $this->Html->link('Ver Inactivos', array('action' => 'index', $configView['estado']), array('class' => 'btn btn-primary btn-sm'));
-        ?>   
-    </div>
+    <?php
+    echo $this->Html->link($configView['linkBtn'], array('action' => 'index', 1), array('class' => 'btn btn-primary btn-sm'));
+    ?>
     <br/>
     <div class="table-responsive">
         <table id="contenidos" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -38,13 +35,13 @@
                         <td><?php echo $val['Contenido']['str_estado']; ?></td>
                         <td>
                             <?php
-                            if (isset($configView['accion']['activar'])) {
+                            if (isset($configView['accion']['activar']) && $val['Contenido']['str_estado'] == 'Inactivo') {
                                 echo $this->Html->link('', array('action' => 'activar', $val['Contenido']['id']), array('title' => 'Activar', 'class' => $configView['accion']['activar']));
                             }
                             if (isset($configView['accion']['historial'])) {
                                 echo $this->Html->link('', array('action' => 'historial', $val['Contenido']['orden']), array('title' => 'Historial', 'class' => $configView['accion']['historial']));
                             }
-                            if (isset($configView['accion']['eliminar'])) {
+                            if (isset($configView['accion']['eliminar']) && $val['Contenido']['str_estado'] == 'Inactivo') {
                                 echo $this->Form->postLink('', array('action' => 'eliminar', $val['Contenido']['id']), array('confirm' => 'Estás seguro?', 'title' => 'Eliminar', 'class' => $configView['accion']['eliminar']));
                             }
                             echo $this->Html->link('', array('action' => 'editar', $val['Contenido']['id']), array('title' => 'Editar', 'class' => $configView['accion']['editar']));
