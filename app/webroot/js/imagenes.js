@@ -11,7 +11,7 @@ $(function () {
         closeEffect: "none"
     });
 
-    $("#input-41").fileinput({
+    $("#upload").fileinput({
         maxFileCount: 10,
         allowedFileTypes: ["image", "video"]
     });

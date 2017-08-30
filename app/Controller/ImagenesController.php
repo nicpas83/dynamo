@@ -50,6 +50,9 @@ class ImagenesController extends AppController {
         $this->set('combo_categorias', $this->Categoria->combo_categorias());
 
         if ($this->request->is('post')) {
+            debug($this->request->data); die;
+            
+            
             $this->Contenido->desactivar($this->request->data['Contenido']['tmp_id']);
             $this->request->data['Contenido']['user_id'] = $this->Auth->user('id');
 

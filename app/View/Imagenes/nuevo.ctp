@@ -16,9 +16,10 @@
             ?>
 
             <label class = "control-label">Select File</label>
-            <input id="input-41" name="input41[]" type="file" multiple class="file-loading">
+            <input id="upload" name="upload[]" type="file" multiple class="file-loading">
 
             <?php
+            echo $this->Form->input('estado', ['type' => 'hidden', 'value' => 1]);
             echo $this->Form->end();
             ?>
         </div>
