@@ -34,7 +34,7 @@ class ImagenesController extends AppController {
                 )
             );
         }
-        
+
 
         //paso variables a la vista.
         $this->set('configView', $configView);
@@ -50,19 +50,40 @@ class ImagenesController extends AppController {
         $this->set('combo_categorias', $this->Categoria->combo_categorias());
 
         if ($this->request->is('post')) {
-            debug($this->request->data); die;
             
+            //nombre de la categoria:
+            $this->loadModel('Categoria');
+            $res = $this->Categoria->findById($this->request->data['Imagen']['categoria']);
+            $categoria = $res['Categoria']['nombre'];
             
-            $this->Contenido->desactivar($this->request->data['Contenido']['tmp_id']);
-            $this->request->data['Contenido']['user_id'] = $this->Auth->user('id');
+            debug($_FILES['data']); 
+            
 
-            $this->Contenido->create();
-            if ($this->Contenido->save($this->request->data)) {
+            //muevo el file a la carpeta correspondiente
+            foreach($_FILES as $key => $val){
+                debug($val); die;
+            }
+            
+            
+            //grabo la info del archivo subido
+            $categoria_id = $this->request->data['Imagen']['categoria'];
+            $files = $this->request->data['files'];            
+            foreach ($files as $key => $val) {
+                $data[$key] = array(
+                    'categoria_id' => $categoria_id,
+                    'ruta' => "/files/landing/" . $categoria . "/",
+                    'nombre' => $val['name']
+                );
+            }
+            $this->Imagen->create();
+            if ($this->Imagen->saveMany($data)) {
                 $this->Flash->success('El registro fue guardado.');
                 return $this->redirect(array('action' => 'index'));
             } else {
                 $this->Flash->error(__('Error al guardar el registro.'));
             }
+
+
         }
     }
 

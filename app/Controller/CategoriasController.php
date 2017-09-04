@@ -48,6 +48,7 @@ class CategoriasController extends AppController {
 
         if ($this->request->is('post')) {
             $this->request->data['Categoria']['user_id'] = $this->Auth->user('id');
+            
             $this->Categoria->create();
             if ($this->Categoria->save($this->request->data)) {
                 $this->Flash->success('El registro fue guardado.');

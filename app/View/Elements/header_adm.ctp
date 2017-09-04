@@ -22,6 +22,7 @@
                 <ul class="dropdown-menu dropdown-user">
                     <li class="divider"></li>
                     <li><a href="<?php echo $this->Html->url(['controller' => 'users', 'action' => 'logout']) ?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li><a href="<?php echo $this->Html->url(['controller' => 'users', 'action' => 'add']) ?>"><i class="fa fa-users fa-fw"></i> Crear Usuarios</a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
