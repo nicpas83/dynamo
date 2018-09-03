@@ -3,13 +3,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="Description" content="Diseño de muebles a medida">
-<meta name="keywords" content="Agency, Corporate, Flat, Responsive">
+<meta name="keywords" content="muebles, madera, decoracion, diseño">
 <meta name="robots" content="noindex,nofollow">
 
 <!--favicon-->
 <?php echo $this->Html->meta('favicon.ico','/favicon.ico',array('type' => 'icon')); ?>
 
-<title>Dynamo Diseño</title>
+<title>Dynamo Muebles</title>
 
 
 <meta name="theme-color" content="#000000">
